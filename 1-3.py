@@ -1,9 +1,9 @@
 import torch
-'''A = torch.tensor([[[0,1,2,3],[4,5,6,7],[8,9,10,11]],
+A = torch.tensor([[[0,1,2,3],[4,5,6,7],[8,9,10,11]],
                   [[12,13,14,15],[16,17,18,19],[20,21,22,23]]])
 #리스트 인덱싱
 A[[0,1,1,0],[0,1,2,1],[3,3,2,1]]
-'''
+
 '''
 바깥 대괄호는 인덱싱을 하겠다는 표시 안쪽이 인덱싱을 수행
 A에서 0,0,3 번째 값을 가져와서 첫번째 열에 채움
@@ -11,15 +11,17 @@ A에서 1,1,3 번째 값을 가져와서 두번째 열에 채움
 A에서 1,2,2 번째 값을 가져와서 3번째 열에 채움
 이런 식으로 세로로 가져와서 값을 채우게 됨
 '''
-'''
+
 #boolean 인덱싱
 a = [1,2,3,4,5,3,3]
 print(a==3)#a와 3이 같냐? 다름 false
 A = torch.tensor([[1,2,3,4],[5,3,7,3]])
 print(A>3)#리스트와 달리 각각의 행과 열에 대해서 비교
 print(A[A>3])#True False가 담긴 행렬로 인덱싱 가능 아까 A>3 인덱싱에서 True 값을 얻은 얘들만 인덱싱하여서 출력
+
 #이런 것도 가능
 A[A>3] == 100#각각의 행렬에 대해서 3보다 큰 것들을 100으로 바꿔라
+
 A = torch.tensor([[1,2],[3,4],[5,6],[7,8]])
 B = torch.tensor([True,False,False,True])#그냥 리스트여도 가능
 print(A[B,:])#shape가 다르지만 각 행에 대해서 불 타입으로 B의 모든 열에 인덱싱한다 이렇게 변형 가능 A[B]로 써도 가능
@@ -35,7 +37,7 @@ a = torch.tensor([[1,2,3][4,5,6]])
 print(a[torch.tensor(0)])#0번째 값 1,2,3 나옴
 A = a[torch.tensor([[0,1]][[1,1]])]#0번째,1번째 1번째,1번째 값이 와서 2,2,3 텐서
 print(A.shape)
-'''
+
 #문제
 a  = torch.tensor([[1,2,3],[4,5,6]])
 A = a[torch.tensor([[0,1],[1,1]])]
@@ -59,6 +61,6 @@ print(A[[0,2,3,1,2], [1,1,0,0,0]])
 print(A[[[0,2],[3,1]],[[0,2],[1,0]]])
 #3. A[ tensor(bool)]#A와 같은 shape을 가진 tensor형 bool이 어디에 True를 갖고 있냐
 print(A[torch.tensor([[False,True,True],[False,False,False],[False,False,True],[False,True,False]])])
-print(A==2,1)
-print(A)
-print(B)
+print(A==2)#마스킹 가능
+#4. A[몇번째 값에 True가 있냐, 몇번째 값에 True가 있냐]
+print(A[[True,False,False,False],[False,True,True]])#이것도 몇행,몇열이라서 True인 행 가져와서 그 안에서 True인 열의 값을 출력
